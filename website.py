@@ -8,14 +8,13 @@ from streamlit_molstar import st_molstar
 from pathlib import Path
 from streamlit_molstar.auto import st_molstar_auto
 
-def visualize_molecules(pdb_dir_path='./PDB', ligand_dir_path='./Ligand', layout="wide", viz_height="512px"):
+def visualize_molecules():
     # Set Streamlit page configuration
-    st.set_page_config(layout=layout)
+    st.set_page_config(layout="wide")
 
     # Paths to directories
-    pdb_dir = Path(pdb_dir_path)
-    ligand_dir = Path(ligand_dir_path)
-
+    pdb_dir = Path('./PDB')
+    ligand_dir = Path('./Ligand')
     # Initialize filepaths
     pdb_filepath = None
     ligand_filepath = None
@@ -34,16 +33,19 @@ def visualize_molecules(pdb_dir_path='./PDB', ligand_dir_path='./Ligand', layout
     # Visualization
     if pdb_filepath:
         st.write("Visualization of Receptor Binding Domain")
-        st_molstar(pdb_filepath, key='1', height=viz_height)
+        st_molstar(pdb_filepath, key='1', height="512px")
 
     if ligand_filepath:
         st.write("Visualization of Ligand")
-        st_molstar(ligand_filepath, key='2', height=viz_height)
+        st_molstar(ligand_filepath, key='2', height="512px")
 
     if pdb_filepath and ligand_filepath:
         st.write("Molecular Dynamics")
         files = [pdb_filepath, ligand_filepath]
-        st_molstar_auto(files, key="3", height=viz_height)
+        st_molstar_auto(files, key="3", height="512px")
+        
+    # Open File
+    os.system('streamlit run "/Users/maxxyung/Documents/Master Documents/004 Coding Projects/hacklytics-automated-docking/visualization.py"')
 
 def clear_and_ensure_directory(directory_path):
     if os.path.exists(directory_path):
@@ -115,7 +117,7 @@ pubchem_name = ""
 error = ""
 pdb_id = ""
 content = ""
-structure = "Molecular Structure:                                           " 
+structure = "Molecular Structure: " 
 
 def is_field_valid(pubchem_name, pdb_id):
     if len(pdb_id) == 0 and len(pubchem_name) == 0:
@@ -138,7 +140,7 @@ def handle_on_action(state):
     if len(state.error) != 0:
         return
 
-    state.structure = "Molecular Structure:                                                 "
+    state.structure = "Molecular Structure: "
     state.content = ""
     # Download RCSB Data
     pdb = state.pdb_id
@@ -190,8 +192,8 @@ page = """
 
 <|
 <|{pdb_id}|input|label=PBD ID|class_name=fullwidth|>{: .m1}
-<|Compute|button|on_action=handle_on_action|label=Generate|>
-<|Visualize|button|on_action=visualize_molecules|label=Visualize|>
+<|Compute|button|on_action=handle_on_action|label=Compute|>
+<|Generate|button|on_action=visualize_molecules|label=Generate|>
 |>
 
 <|
@@ -210,4 +212,4 @@ my_theme = {
   }
 }
 
-Gui(page).run(use_reloader=True, port=3001, theme=my_theme)
+Gui(page).run(use_reloader=True, port=3002, theme=my_theme)
