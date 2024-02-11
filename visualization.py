@@ -2,6 +2,8 @@ import streamlit as st
 from streamlit_molstar import st_molstar
 from pathlib import Path
 from streamlit_molstar.auto import st_molstar_auto
+from pymongo.mongo_client import MongoClient
+from pymongo.server_api import ServerApi
 
 st.set_page_config(layout="wide")
 
@@ -39,3 +41,26 @@ with open('./Docking/Result.pdbqt', 'r') as file:
         parts = secondline.split()
         result = " ".join(parts[1:4])
         st.write(result)
+
+affinity = result.split()[2]
+
+# Mongo DB Store
+uri = "mongodb+srv://anaybhat:DNffDG6xV9vyr9SQ@cluster0.knvvmat.mongodb.net/"
+
+client = MongoClient(uri, server_api=ServerApi('1'))
+
+data = {
+    'ligand': ligand_filepath,
+    'receptor': pdb_filepath,
+    'affinity': affinity
+}
+
+db = client['client']
+collection = db['collection']
+result = collection.insert_one(data)
+
+try:
+    client.admin.command('ping')
+    print("Successfully connected to MongoDB!")
+except Exception as e:
+    print(e)

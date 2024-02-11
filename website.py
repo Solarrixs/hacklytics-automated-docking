@@ -9,6 +9,7 @@ from pathlib import Path
 from streamlit_molstar.auto import st_molstar_auto
 import subprocess
 import time
+import pandas as pd
 
 def visualize_molecules():
     # Set Streamlit page configuration
@@ -124,6 +125,7 @@ error = ""
 pdb_id = ""
 content = ""
 structure = "Molecular Structure: " 
+dataframe = pd.DataFrame()
 
 def is_field_valid(pubchem_name, pdb_id):
     if len(pdb_id) == 0 and len(pubchem_name) == 0:
@@ -142,6 +144,10 @@ result_directory = os.path.join(root, 'Docking')
 clear_and_ensure_directory(pdb_directory)
 clear_and_ensure_directory(ligand_directory)
 clear_and_ensure_directory(result_directory)
+
+def extract(state):
+    subprocess.run(['python3', './mongo.py'])
+    state.dataframe = pd.read_csv('df.csv')
 
 def handle_on_action(state):
     state.error = is_field_valid(state.pubchem_name, state.pdb_id)
@@ -206,13 +212,16 @@ page = """
 <|{pubchem_name}|input|label=PubChem Name or ID|class_name=fullwidth|>{: .m1}
 <|{error}|text|>{: .color-primary}
 |>
-
 |>
 <|layout|columns=1 1 6| 
 <|Compute|button|on_action=handle_on_action|label=Compute|> 
 
 <|Generate|button|on_action=visualize_molecules|label=Generate|>
+
+<|Extract|button|on_action=extract|label=Extract|>
 |>
+<|part|class_name=card|
+<|{dataframe}|table|rebuild|>
 |>
 |>
 """
@@ -223,4 +232,4 @@ my_theme = {
   }
 }
 
-Gui(page).run(use_reloader=True, port=3001, theme=my_theme)
+Gui(page).run(use_reloader=True, port=3002, theme=my_theme)
