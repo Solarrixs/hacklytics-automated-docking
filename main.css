@@ -1,0 +1,9 @@
+.structure-image {
+    /* border: none; */
+    border-radius: 50px;
+}
+
+.text-input {
+    padding-top: 20px;
+    flex: 1;
+}
