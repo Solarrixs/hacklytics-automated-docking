@@ -3,6 +3,8 @@ import requests
 import os
 import gzip
 import shutil
+
+
 # from main import clear_and_ensure_directory, download_and_unzip_pdb, fetch_pubchem_data
 
 def clear_and_ensure_directory(directory_path):
@@ -48,7 +50,7 @@ def download_and_unzip_pdb(pdb_id):
     except Exception as err:
         print(f"An error occurred: {err}")
         
-def fetch_pubchem_data(name_or_id, data_type):
+def fetch_pubchem_data(name_or_id, data_type, state):
     base_url = "https://pubchem.ncbi.nlm.nih.gov/rest/pug"
     compound_identifier = "cid" if name_or_id.isdigit() else "name"
     if data_type == 'TXT':
@@ -65,6 +67,7 @@ def fetch_pubchem_data(name_or_id, data_type):
     if response.status_code == 200:
         return response.content if data_type == 'PNG' else response.text
     else:
+        state.error("Invalid PBD ID")
         print(f"Error fetching data: HTTP {response.status_code}")
         return None
 
@@ -73,9 +76,10 @@ def fetch_pubchem_data(name_or_id, data_type):
 pubchem_name = ""
 error = ""
 pdb_id = ""
+content = ""
+structure = "" 
 
 def is_field_valid(pubchem_name, pdb_id):
-    print(pdb_id + " + " + pubchem_name)
     if len(pdb_id) == 0 and len(pubchem_name) == 0:
         return "Fill in the field"
     elif len(pdb_id) == 0:
@@ -94,7 +98,6 @@ clear_and_ensure_directory(ligand_directory)
 def handle_on_action(state):
     state.error = is_field_valid(state.pubchem_name, state.pdb_id)
     if len(state.error) != 0:
-        print("Invalid")
         return
 
     # Download RCSB Data
@@ -105,8 +108,10 @@ def handle_on_action(state):
     name_or_id = state.pubchem_name
     data_types = ['TXT', 'PNG', 'SDF']
 
+    
+
     for data_type in data_types:
-        data = fetch_pubchem_data(name_or_id, data_type)
+        data = fetch_pubchem_data(name_or_id, data_type, state)
         if data:
             # Construct the file path within the Ligand directory
             file_path = os.path.join(ligand_directory, f"{name_or_id}.{data_type.lower()}")
@@ -120,26 +125,51 @@ def handle_on_action(state):
                     file.write(data)
                 print(f"Data saved as {file_path}")
 
+    # file_path = "/Ligand/" + state.pubchem_name + ".txt"
+    file_path = os.path.join(ligand_directory, f"{state.pubchem_name}.txt")
+    with open(file_path, 'r') as file:
+        file_content = file.read()
+    state.structure = file_content
+
+    state.content = "/Ligand/" + state.pubchem_name + ".png"
+    
+    state.pdb_id = ""
+    state.pubchem_name = ""
+
 page = """
 <|2 6 2 |layout|
+
 <|toggle|theme|>
+
 <| 
-## Taipy App ## {: .text-center .h1}
+## Affini Dock ## {: .text-center .h1}
 <|layout|columns=1 1|
+<|{content}|image|height=400px|width=400px|>
+
+<|{structure}|text|>
+|>
+<|layout|columns=1 1|
+
 <|
-<|{pdb_id}|input|label=PBD ID|class_name=fullwidth|>
+<|{pdb_id}|input|label=PBD ID|class_name=fullwidth|>{: .m1}
 <|Generate|button|on_action=handle_on_action|label=Generate|>
 |>
+
 <|
-<|{pubchem_name}|input|label=PubChem Name or ID|class_name=fullwidth|>
+<|{pubchem_name}|input|label=PubChem Name or ID|class_name=fullwidth|>{: .m1}
 <|{error}|text|>{: .color-primary}
 |>
+
 |>
-<|
 |>
-<|{error}|text|>
 |>
 """
 
-Gui(page).run(use_reloader=True, port=3001)
+my_theme = {
+  "palette": {
+    "image": {"borderColor": "#FFFFFF"},
+  }
+}
+
+Gui(page).run(use_reloader=True, port=3001, theme=my_theme)
 
