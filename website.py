@@ -200,12 +200,11 @@ page = """
 |>
 
 |>
-|>
-
 <|layout|columns=1 1 1 1|
 <|Compute|button|on_action=handle_on_action|label=Compute|> 
 
 <|Generate|button|on_action=visualize_molecules|label=Generate|>
+|>
 |>
 |>
 """
