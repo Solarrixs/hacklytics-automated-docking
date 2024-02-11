@@ -3,9 +3,47 @@ import requests
 import os
 import gzip
 import shutil
+import streamlit as st
+from streamlit_molstar import st_molstar
+from pathlib import Path
+from streamlit_molstar.auto import st_molstar_auto
 
+def visualize_molecules(pdb_dir_path='./PDB', ligand_dir_path='./Ligand', layout="wide", viz_height="512px"):
+    # Set Streamlit page configuration
+    st.set_page_config(layout=layout)
 
-# from main import clear_and_ensure_directory, download_and_unzip_pdb, fetch_pubchem_data
+    # Paths to directories
+    pdb_dir = Path(pdb_dir_path)
+    ligand_dir = Path(ligand_dir_path)
+
+    # Initialize filepaths
+    pdb_filepath = None
+    ligand_filepath = None
+
+    # List PDB and ligand files
+    pdb_files = list(pdb_dir.glob('*.pdb'))
+    ligand_files = list(ligand_dir.glob('*.sdf'))
+
+    # Select the first file found for visualization
+    if pdb_files:
+        pdb_filepath = str(pdb_files[0])
+
+    if ligand_files:
+        ligand_filepath = str(ligand_files[0])
+
+    # Visualization
+    if pdb_filepath:
+        st.write("Visualization of Receptor Binding Domain")
+        st_molstar(pdb_filepath, key='1', height=viz_height)
+
+    if ligand_filepath:
+        st.write("Visualization of Ligand")
+        st_molstar(ligand_filepath, key='2', height=viz_height)
+
+    if pdb_filepath and ligand_filepath:
+        st.write("Molecular Dynamics")
+        files = [pdb_filepath, ligand_filepath]
+        st_molstar_auto(files, key="3", height=viz_height)
 
 def clear_and_ensure_directory(directory_path):
     if os.path.exists(directory_path):
@@ -110,8 +148,6 @@ def handle_on_action(state):
     name_or_id = state.pubchem_name
     data_types = ['TXT', 'PNG', 'SDF']
 
-    
-
     for data_type in data_types:
         data = fetch_pubchem_data(name_or_id, data_type, state)
         if data:
@@ -174,4 +210,3 @@ my_theme = {
 }
 
 Gui(page).run(use_reloader=True, port=3001, theme=my_theme)
-
