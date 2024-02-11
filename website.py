@@ -77,7 +77,7 @@ pubchem_name = ""
 error = ""
 pdb_id = ""
 content = ""
-structure = "" 
+structure = "Molecular Structure:                                           " 
 
 def is_field_valid(pubchem_name, pdb_id):
     if len(pdb_id) == 0 and len(pubchem_name) == 0:
@@ -100,6 +100,8 @@ def handle_on_action(state):
     if len(state.error) != 0:
         return
 
+    state.structure = "Molecular Structure:                                                 "
+    state.content = ""
     # Download RCSB Data
     pdb = state.pdb_id
     download_and_unzip_pdb(pdb)
@@ -129,7 +131,7 @@ def handle_on_action(state):
     file_path = os.path.join(ligand_directory, f"{state.pubchem_name}.txt")
     with open(file_path, 'r') as file:
         file_content = file.read()
-    state.structure = file_content
+    state.structure += file_content
 
     state.content = "/Ligand/" + state.pubchem_name + ".png"
     
