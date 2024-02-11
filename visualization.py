@@ -2,7 +2,6 @@ import streamlit as st
 from streamlit_molstar import st_molstar
 from pathlib import Path
 from streamlit_molstar.auto import st_molstar_auto
-import time
 
 st.set_page_config(layout="wide")
 
@@ -24,11 +23,11 @@ if ligand_files:
 
 # Viewer
 st.write("Visualization of Receptor Binding Domain")
-st_molstar(pdb_filepath, key='1', height="320px")
+st_molstar(pdb_filepath, key='1', height="512px")
 
 st.write("Visualization of Ligand")
-st_molstar(ligand_filepath, key='2', height="320px")
+st_molstar(ligand_filepath, key='2', height="512px")
 
 st.write("Molecular Dynamics")
 files = [pdb_filepath, ligand_filepath]
-st_molstar_auto(files, key="3", height="320px")
+st_molstar_auto(files, key="3", height="512px")

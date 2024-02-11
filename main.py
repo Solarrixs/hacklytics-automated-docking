@@ -4,10 +4,6 @@ import gzip
 import shutil
 
 def clear_and_ensure_directory(directory_path):
-    """
-    Clears the directory at directory_path of all files and subdirectories,
-    then ensures that the directory exists by creating it if it does not.
-    """
     if os.path.exists(directory_path):
         for filename in os.listdir(directory_path):
             file_path = os.path.join(directory_path, filename)
