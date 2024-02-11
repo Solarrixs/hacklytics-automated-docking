@@ -190,7 +190,8 @@ page = """
 
 <|
 <|{pdb_id}|input|label=PBD ID|class_name=fullwidth|>{: .m1}
-<|Generate|button|on_action=handle_on_action|label=Generate|>
+<|Compute|button|on_action=handle_on_action|label=Generate|>
+<|Visualize|button|on_action=visualize_molecules|label=Visualize|>
 |>
 
 <|
