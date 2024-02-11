@@ -7,6 +7,8 @@ import streamlit as st
 from streamlit_molstar import st_molstar
 from pathlib import Path
 from streamlit_molstar.auto import st_molstar_auto
+import subprocess
+import time
 
 def visualize_molecules():
     # Set Streamlit page configuration
@@ -44,6 +46,10 @@ def visualize_molecules():
         files = [pdb_filepath, ligand_filepath]
         st_molstar_auto(files, key="3", height="512px")
         
+    # Execute
+    subprocess.run(['python3', './vina.py'])
+    time.sleep(2)
+    
     # Open File
     os.system('streamlit run "/Users/maxxyung/Documents/Master Documents/004 Coding Projects/hacklytics-automated-docking/visualization.py"')
 
@@ -132,8 +138,10 @@ def is_field_valid(pubchem_name, pdb_id):
 root = os.path.dirname(os.path.abspath(__file__))
 pdb_directory = os.path.join(root, 'PDB')
 ligand_directory = os.path.join(root, 'Ligand')
+result_directory = os.path.join(root, 'Docking')
 clear_and_ensure_directory(pdb_directory)
 clear_and_ensure_directory(ligand_directory)
+clear_and_ensure_directory(result_directory)
 
 def handle_on_action(state):
     state.error = is_field_valid(state.pubchem_name, state.pdb_id)
@@ -200,7 +208,7 @@ page = """
 |>
 
 |>
-<|layout|columns=1 1 1 1|
+<|layout|columns=1 1 6| 
 <|Compute|button|on_action=handle_on_action|label=Compute|> 
 
 <|Generate|button|on_action=visualize_molecules|label=Generate|>
@@ -215,4 +223,4 @@ my_theme = {
   }
 }
 
-Gui(page).run(use_reloader=True, port=3002, theme=my_theme)
+Gui(page).run(use_reloader=True, port=3001, theme=my_theme)
