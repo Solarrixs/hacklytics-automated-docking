@@ -58,9 +58,3 @@ data = {
 db = client['client']
 collection = db['collection']
 result = collection.insert_one(data)
-
-try:
-    client.admin.command('ping')
-    print("Successfully connected to MongoDB!")
-except Exception as e:
-    print(e)
