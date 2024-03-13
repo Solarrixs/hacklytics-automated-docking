@@ -141,9 +141,6 @@ root = os.path.dirname(os.path.abspath(__file__))
 pdb_directory = os.path.join(root, 'PDB')
 ligand_directory = os.path.join(root, 'Ligand')
 result_directory = os.path.join(root, 'Docking')
-clear_and_ensure_directory(pdb_directory)
-clear_and_ensure_directory(ligand_directory)
-clear_and_ensure_directory(result_directory)
 
 def extract(state):
     subprocess.run(['python3', './mongo.py'])
@@ -153,6 +150,9 @@ def handle_on_action(state):
     state.error = is_field_valid(state.pubchem_name, state.pdb_id)
     if len(state.error) != 0:
         return
+    clear_and_ensure_directory(pdb_directory)
+    clear_and_ensure_directory(ligand_directory)
+    clear_and_ensure_directory(result_directory)
 
     state.structure = "Molecular Structure: "
     state.content = ""
@@ -223,7 +223,7 @@ page = """
 <|part|class_name=card|
 <|{dataframe}|table|rebuild|>
 |>
-|>
+|>  
 """
 
 my_theme = {

@@ -1,6 +1,6 @@
 HEADER    GLYCOSYLTRANSFERASE                     07-JUN-95   1XYZ              
-TITLE     A COMMON PROTEIN FOLD AND SIMILAR ACTIVE SITE IN TWO                  
-TITLE    2 DISTINCT FAMILIES OF BETA-GLYCANASES                                 
+TITLE     A COMMON PROTEIN FOLD AND SIMILAR ACTIVE SITE IN TWO DISTINCT FAMILIES
+TITLE    2 OF BETA-GLYCANASES                                                   
 COMPND    MOL_ID: 1;                                                            
 COMPND   2 MOLECULE: 1,4-BETA-D-XYLAN-XYLANOHYDROLASE;                          
 COMPND   3 CHAIN: A, B;                                                         
@@ -14,16 +14,17 @@ SOURCE   4 STRAIN: NCIB 10682;
 SOURCE   5 EXPRESSION_SYSTEM: ESCHERICHIA COLI;                                 
 SOURCE   6 EXPRESSION_SYSTEM_TAXID: 562;                                        
 SOURCE   7 EXPRESSION_SYSTEM_PLASMID: PCT1214 (PUC8)                            
-KEYWDS    GLYCOSYL HYDROLASE, XYLANASE, FAMILY F/10 OF GLYCOSYL                 
-KEYWDS   2 HYDROLASES, CLOSTRIDIUM THERMOCELLUM, GLYCOSYLTRANSFERASE            
+KEYWDS    GLYCOSYL HYDROLASE, XYLANASE, FAMILY F/10 OF GLYCOSYL HYDROLASES,     
+KEYWDS   2 CLOSTRIDIUM THERMOCELLUM, GLYCOSYLTRANSFERASE                        
 EXPDTA    X-RAY DIFFRACTION                                                     
 AUTHOR    P.M.ALZARI,S.SPINELLI,R.DOMINGUEZ                                     
+REVDAT   3   14-FEB-24 1XYZ    1       REMARK                                   
 REVDAT   2   24-FEB-09 1XYZ    1       VERSN                                    
 REVDAT   1   29-JAN-96 1XYZ    0                                                
-JRNL        AUTH   R.DOMINGUEZ,H.SOUCHON,S.SPINELLI,Z.DAUTER,                   
-JRNL        AUTH 2 K.S.WILSON,S.CHAUVAUX,P.BEGUIN,P.M.ALZARI                    
-JRNL        TITL   A COMMON PROTEIN FOLD AND SIMILAR ACTIVE SITE IN             
-JRNL        TITL 2 TWO DISTINCT FAMILIES OF BETA-GLYCANASES.                    
+JRNL        AUTH   R.DOMINGUEZ,H.SOUCHON,S.SPINELLI,Z.DAUTER,K.S.WILSON,        
+JRNL        AUTH 2 S.CHAUVAUX,P.BEGUIN,P.M.ALZARI                               
+JRNL        TITL   A COMMON PROTEIN FOLD AND SIMILAR ACTIVE SITE IN TWO         
+JRNL        TITL 2 DISTINCT FAMILIES OF BETA-GLYCANASES.                        
 JRNL        REF    NAT.STRUCT.BIOL.              V.   2   569 1995              
 JRNL        REFN                   ISSN 1072-8368                               
 JRNL        PMID   7664125                                                      
@@ -31,17 +32,16 @@ JRNL        DOI    10.1038/NSB0795-569
 REMARK   1                                                                      
 REMARK   1 REFERENCE 1                                                          
 REMARK   1  AUTH   H.SOUCHON,S.SPINELLI,P.BEGUIN,P.M.ALZARI                     
-REMARK   1  TITL   CRYSTALLIZATION AND PRELIMINARY DIFFRACTION                  
-REMARK   1  TITL 2 ANALYSIS OF THE CATALYTIC DOMAIN OF XYLANASE Z               
-REMARK   1  TITL 3 FROM CLOSTRIDIUM THERMOCELLUM                                
+REMARK   1  TITL   CRYSTALLIZATION AND PRELIMINARY DIFFRACTION ANALYSIS OF THE  
+REMARK   1  TITL 2 CATALYTIC DOMAIN OF XYLANASE Z FROM CLOSTRIDIUM THERMOCELLUM 
 REMARK   1  REF    J.MOL.BIOL.                   V. 235  1348 1994              
 REMARK   1  REFN                   ISSN 0022-2836                               
 REMARK   2                                                                      
 REMARK   2 RESOLUTION.    1.40 ANGSTROMS.                                       
 REMARK   3                                                                      
 REMARK   3 REFINEMENT.                                                          
-REMARK   3   PROGRAM     : ARP/WARP, X-PLOR                                     
-REMARK   3   AUTHORS     : LAMZIN,PERRAKIS,MORRIS                               
+REMARK   3   PROGRAM     : X-PLOR                                               
+REMARK   3   AUTHORS     : BRUNGER                                              
 REMARK   3                                                                      
 REMARK   3  DATA USED IN REFINEMENT.                                            
 REMARK   3   RESOLUTION RANGE HIGH (ANGSTROMS) : 1.40                           
@@ -74,7 +74,7 @@ REMARK   3   BIN FREE R VALUE TEST SET COUNT     : NULL
 REMARK   3   ESTIMATED ERROR OF BIN FREE R VALUE : NULL                         
 REMARK   3                                                                      
 REMARK   3  NUMBER OF NON-HYDROGEN ATOMS USED IN REFINEMENT.                    
-REMARK   3   PROTEIN ATOMS            : 5166                                    
+REMARK   3   PROTEIN ATOMS            : 5164                                    
 REMARK   3   NUCLEIC ACID ATOMS       : 0                                       
 REMARK   3   HETEROGEN ATOMS          : 0                                       
 REMARK   3   SOLVENT ATOMS            : 457                                     
@@ -101,9 +101,9 @@ REMARK   3   ESD FROM C-V SIGMAA          (A) : NULL
 REMARK   3                                                                      
 REMARK   3  RMS DEVIATIONS FROM IDEAL VALUES.                                   
 REMARK   3   BOND LENGTHS                 (A) : 0.015                           
-REMARK   3   BOND ANGLES            (DEGREES) : 1.61                            
+REMARK   3   BOND ANGLES            (DEGREES) : 1.610                           
 REMARK   3   DIHEDRAL ANGLES        (DEGREES) : 23.20                           
-REMARK   3   IMPROPER ANGLES        (DEGREES) : 1.58                            
+REMARK   3   IMPROPER ANGLES        (DEGREES) : 1.580                           
 REMARK   3                                                                      
 REMARK   3  ISOTROPIC THERMAL MODEL : NULL                                      
 REMARK   3                                                                      
@@ -124,9 +124,10 @@ REMARK   3  TOPOLOGY FILE  1   : NULL
 REMARK   3                                                                      
 REMARK   3  OTHER REFINEMENT REMARKS: NULL                                      
 REMARK   4                                                                      
-REMARK   4 1XYZ COMPLIES WITH FORMAT V. 3.15, 01-DEC-08                         
+REMARK   4 1XYZ COMPLIES WITH FORMAT V. 3.30, 13-JUL-11                         
 REMARK 100                                                                      
 REMARK 100 THIS ENTRY HAS BEEN PROCESSED BY BNL.                                
+REMARK 100 THE DEPOSITION ID IS D_1000177336.                                   
 REMARK 200                                                                      
 REMARK 200 EXPERIMENTAL DETAILS                                                 
 REMARK 200  EXPERIMENT TYPE                : X-RAY DIFFRACTION                  
@@ -172,7 +173,7 @@ REMARK 200  <I/SIGMA(I)> FOR SHELL         : NULL
 REMARK 200                                                                      
 REMARK 200 DIFFRACTION PROTOCOL: NULL                                           
 REMARK 200 METHOD USED TO DETERMINE THE STRUCTURE: NULL                         
-REMARK 200 SOFTWARE USED: ARP/WARP, X-PLOR                                      
+REMARK 200 SOFTWARE USED: X-PLOR                                                
 REMARK 200 STARTING MODEL: NULL                                                 
 REMARK 200                                                                      
 REMARK 200 REMARK: NULL                                                         
@@ -208,8 +209,7 @@ REMARK 300 SEE REMARK 350 FOR THE AUTHOR PROVIDED AND/OR PROGRAM
 REMARK 300 GENERATED ASSEMBLY INFORMATION FOR THE STRUCTURE IN                  
 REMARK 300 THIS ENTRY. THE REMARK MAY ALSO PROVIDE INFORMATION ON               
 REMARK 300 BURIED SURFACE AREA.                                                 
-REMARK 300 REMARK:                                                              
-REMARK 300 MTRIX                                                                
+REMARK 300 REMARK: MTRIX                                                        
 REMARK 300  THE TRANSFORMATIONS PRESENTED ON MTRIX RECORDS BELOW                
 REMARK 300  DESCRIBE NON-CRYSTALLOGRAPHIC RELATIONSHIPS AMONG THE               
 REMARK 300  VARIOUS DOMAINS IN THIS ENTRY.  APPLYING THE APPROPRIATE            
@@ -342,28 +342,6 @@ REMARK 500    SER B 762        4.24     50.65
 REMARK 500    ASN B 813       61.25     36.76                                   
 REMARK 500                                                                      
 REMARK 500 REMARK: NULL                                                         
-REMARK 525                                                                      
-REMARK 525 SOLVENT                                                              
-REMARK 525                                                                      
-REMARK 525 THE SOLVENT MOLECULES HAVE CHAIN IDENTIFIERS THAT                    
-REMARK 525 INDICATE THE POLYMER CHAIN WITH WHICH THEY ARE MOST                  
-REMARK 525 CLOSELY ASSOCIATED. THE REMARK LISTS ALL THE SOLVENT                 
-REMARK 525 MOLECULES WHICH ARE MORE THAN 5A AWAY FROM THE                       
-REMARK 525 NEAREST POLYMER CHAIN (M = MODEL NUMBER;                             
-REMARK 525 RES=RESIDUE NAME; C=CHAIN IDENTIFIER; SSEQ=SEQUENCE                  
-REMARK 525 NUMBER; I=INSERTION CODE):                                           
-REMARK 525                                                                      
-REMARK 525  M RES CSSEQI                                                        
-REMARK 525    HOH B 299        DISTANCE = 13.50 ANGSTROMS                       
-REMARK 525    HOH A  98        DISTANCE =  9.05 ANGSTROMS                       
-REMARK 525    HOH A 100        DISTANCE =  9.72 ANGSTROMS                       
-REMARK 525    HOH B 356        DISTANCE =  5.34 ANGSTROMS                       
-REMARK 525    HOH B 368        DISTANCE =  8.39 ANGSTROMS                       
-REMARK 525    HOH B 380        DISTANCE = 11.09 ANGSTROMS                       
-REMARK 525    HOH B 403        DISTANCE =  5.08 ANGSTROMS                       
-REMARK 525    HOH B 409        DISTANCE = 18.99 ANGSTROMS                       
-REMARK 525    HOH A 225        DISTANCE =  5.08 ANGSTROMS                       
-REMARK 525    HOH A 230        DISTANCE =  5.81 ANGSTROMS                       
 DBREF  1XYZ A  491   837  UNP    P10478   XYNZ_CLOTM     491    837             
 DBREF  1XYZ B  491   837  UNP    P10478   XYNZ_CLOTM     491    837             
 SEQRES   1 A  347  PRO GLY GLN GLY ASP VAL GLN THR PRO ASN PRO SER VAL          
@@ -6104,5 +6082,5 @@ HETATM 5620  O   HOH B 454     -13.923  24.553  83.514  1.00 42.38           O
 HETATM 5621  O   HOH B 455      11.887  26.977  67.039  1.00 50.06           O  
 HETATM 5622  O   HOH B 456       4.457  32.773  95.166  1.00 54.07           O  
 HETATM 5623  O   HOH B 457      22.641  45.784  49.039  1.00 62.26           O  
-MASTER      336    2    0   28   20    0    0    9 5621    2    0   54          
+MASTER      313    0    0   28   20    0    0    9 5621    2    0   54          
 END                                                                             
